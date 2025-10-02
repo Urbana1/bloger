@@ -1,7 +1,7 @@
 import os
 import openai
 
-openai.api_key = os.getenv("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")
+openai.api_key = os.getenv("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")
 
 def main():
     topic = "AIで稼ぐ方法（初心者向け）"
