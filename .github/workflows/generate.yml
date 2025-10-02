@@ -1,0 +1,29 @@
+name: Generate Blog Article
+
+on:
+  workflow_dispatch:   # 手動実行のみ
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run script
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python main.py
+
+      - name: Upload article
+        uses: actions/upload-artifact@v4
+        with:
+          name: article
+          path: article.txt
